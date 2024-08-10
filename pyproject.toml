@@ -1,0 +1,82 @@
+[tool.poetry]
+name = "tfm adan aviles"
+version = "0.1.0"
+description = ""
+authors = ["Adan Aviles <adan.aviles.cahill@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pandas = "^2.2.2"
+scikit-learn = "^1.5.1"
+ipykernel = "^6.29.5"
+jupyter = "^1.0.0"
+omegaconf = "^2.3.0"
+dask = "^2024.8.0"
+fastparquet = "^2024.5.0"
+xgboost = "^2.1.1"
+lightgbm = "^4.5.0"
+catboost = "^1.2.5"
+dask-expr = "^1.1.11"
+
+
+[tool.poetry.group.visualization.dependencies]
+seaborn = "^0.13.2"
+matplotlib = "^3.9.1.post1"
+
+
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^3.8.0"
+black = "^24.8.0"
+isort = "^5.13.2"
+mypy = "^1.11.2"
+flake8 = "^7.1.1"
+dask-expr = "^1.1.11"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 120
+experimental-string-processing = true
+
+
+[tool.flake8]
+# We need to install flake8-pyproject to enable flake to read pyproject.toml configs
+max-line-length = 120
+max-cognitive-complexity = 20
+ignore= ["E203", "W503"]
+
+
+[tool.mypy]
+ignore_missing_imports = true
+warn_no_return = false
+disallow_untyped_defs = false
+allow_redefinition = true
+follow_imports = 'silent'
+
+[[tool.mypy.overrides]]
+module = "yaml"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "dateutil.relativedelta"
+ignore_missing_imports = true
+
+[tool.isort]
+profile="black"
+default_section="THIRDPARTY"
+line_length = 120
+multi_line_output = 3
+force_grid_wrap = 0
+include_trailing_comma=true
+use_parentheses=true
+
+
+[tool.pydocstyle]
+ignore = [
+    "D100", "D107",
+    "D203", "D205", "D212", "D213",
+    "D400", "D415"]
