@@ -5,13 +5,13 @@ from pathlib import Path
 import yaml  # type: ignore
 from omegaconf import OmegaConf
 
-
 #############################
 #  Define global variables  #
 #############################
 CURR_DIR = Path(__file__)
 SRC_DIR = CURR_DIR.parents[1]
 ROOT_DIR = CURR_DIR.parents[2]
+
 
 ##############################
 #  Define config yaml paths  #
@@ -24,7 +24,9 @@ def get_config_path(relative_path):
     """
     return str(SRC_DIR / relative_path)
 
+
 CONFIG_YAML_PATH_DATA = get_config_path("config/dailyaily_config/config.yaml")
+
 
 ##############################
 #  Define abstract method    #
@@ -41,6 +43,8 @@ class AbstractSettings(ABC):
 
 @dataclass
 class Config:
+    """Config main"""
+
     k_folds: int
 
 

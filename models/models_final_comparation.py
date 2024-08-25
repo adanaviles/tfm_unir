@@ -1,19 +1,9 @@
 import itertools
 import pickle
 
-import lightgbm as lgb
-import numpy as np
 import pandas as pd
-from catboost import CatBoostClassifier
-from sklearn.base import clone
-from sklearn.ensemble import AdaBoostClassifier, RandomForestClassifier
-from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import log_loss, roc_auc_score
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelEncoder
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.utils.class_weight import compute_sample_weight
-from xgboost import XGBClassifier
 
 from scripts.config import SRC_DIR
 
@@ -30,6 +20,11 @@ LIST_MODELS = [
 
 
 def preprocess_data(file_path):
+    """
+    Create preprocess data
+    :param file_path:
+    :return:
+    """
     train = pd.read_csv(file_path, index_col=[0])
     X = train.drop(columns=["msno", "is_churn"])
     y = train["is_churn"]
@@ -37,6 +32,13 @@ def preprocess_data(file_path):
 
 
 def evaluate_simple_model(model, X_test: pd.DataFrame, y_test):
+    """
+    Evaluate simple model
+    :param model:
+    :param X_test:
+    :param y_test:
+    :return:
+    """
     loaded_model = pickle.load(open(f"{model}_model_gs.pkl", "rb"))
 
     # Generate predictions
@@ -48,6 +50,13 @@ def evaluate_simple_model(model, X_test: pd.DataFrame, y_test):
 
 
 def evaluate_combination(model_combination, X_test: pd.DataFrame, y_test):
+    """
+    Evaluate combinations of models
+    :param model_combination:
+    :param X_test:
+    :param y_test:
+    :return:
+    """
     model_1_name = model_combination[0]
     model_2_name = model_combination[1]
 

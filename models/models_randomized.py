@@ -1,14 +1,11 @@
 import pickle
 
 import lightgbm as lgb
-import numpy as np
 import pandas as pd
 from catboost import CatBoostClassifier
 from sklearn.ensemble import AdaBoostClassifier, RandomForestClassifier
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import classification_report, confusion_matrix, log_loss, roc_auc_score
-from sklearn.model_selection import GridSearchCV, RandomizedSearchCV, train_test_split
-from sklearn.preprocessing import LabelEncoder
+from sklearn.metrics import log_loss, roc_auc_score
+from sklearn.model_selection import GridSearchCV, train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.utils.class_weight import compute_sample_weight
 from xgboost import XGBClassifier
@@ -66,6 +63,11 @@ MODELS = {
 
 
 def preprocess_data(file_path):
+    """
+
+    :param file_path:
+    :return:
+    """
     train = pd.read_csv(file_path, index_col=[0])
     X = train.drop(columns=["msno", "is_churn"])
     y = train["is_churn"]
@@ -73,6 +75,16 @@ def preprocess_data(file_path):
 
 
 def train_and_evaluate(model_name, X_train, X_test, y_train, y_test, params=None):
+    """
+    Train and evaluate the model
+    :param model_name:
+    :param X_train:
+    :param X_test:
+    :param y_train:
+    :param y_test:
+    :param params:
+    :return:
+    """
     model_info = MODELS.get(model_name)
     if model_info is None:
         raise ValueError(f"Model '{model_name}' is not defined.")
