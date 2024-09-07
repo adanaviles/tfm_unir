@@ -5,3 +5,7 @@ Los servicios de streaming han venido para quedarse y dentro de ellos los servic
 Para realizar esta predicción, se utilizan diferentes técnicas de machine learning que desarrollaremos en el trabajo a través de diferentes modelos, además del estudio de los datos.
 
 La idea pues no es tanto el estudiar los servicios de streaming musical o la participación en una competición de Kaggle sino la idea general de cómo se construyen los modelos de predicción del churn de cualquier tipo. Esto nos permitirá explorar diferentes técnicas de análisis de datos y predicción (o clasificación en este caso) para obtener modelos robustos que nos permitan saber cómo se comportará el cliente y poder tomar las soluciones adecuadas.
+
+## KKBOX
+
+Los datasets han sido sacados de https://www.kaggle.com/competitions/kkbox-churn-prediction-challenge/overview y pueden ser encontrados en la sección de Data.
